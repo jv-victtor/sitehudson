@@ -148,6 +148,17 @@
         carousel.addEventListener('mouseenter', ()=>{ if(timer) clearInterval(timer); });
         carousel.addEventListener('mouseleave', ()=>{ startTimer(); });
 
+        // basic touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        carousel.addEventListener('touchstart', (e)=>{ touchStartX = e.touches[0].clientX; if(timer) clearInterval(timer); }, {passive:true});
+        carousel.addEventListener('touchmove', (e)=>{ touchEndX = e.touches[0].clientX; }, {passive:true});
+        carousel.addEventListener('touchend', ()=>{
+          const diff = touchStartX - touchEndX;
+          if(Math.abs(diff) > 40){ if(diff > 0) next(); else prev(); }
+          resetTimer();
+        });
+
         // make images responsive and accessible fallback
         slides.forEach(s=>{
           const img = s.querySelector('img');
