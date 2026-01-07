@@ -54,7 +54,7 @@ body{padding-top:64px}
   .ribbon{padding:10px 16px}
   .cta-row{margin-top:18px;gap:12px}
   .cta{padding:12px 14px;border-radius:10px}
-  .hero-content{text-align:center;max-width:90%;padding:24px}
+  .hero-content{text-align:center;max-width:100%;padding:24px}
   .section{min-height:100vh}
   .cards{grid-template-columns:1fr;gap:10px}
   .section .section-inner{padding:0}
