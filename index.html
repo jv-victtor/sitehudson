@@ -38,28 +38,17 @@
     <section id="conquistas" class="section conquistas">
       <div class="section-inner">
         <h2 class="section-title">Conquistas</h2>
-        <div class="cards">
-          <div class="card">
-            <div class="card-icon">🏆</div>
-            <div class="card-body">
-              <h3>Campeonato Estadual</h3>
-              <p>Ano: 2023 — Categoria: Faixa Preta</p>
-            </div>
+        <div class="carousel" aria-roledescription="carousel">
+          <div class="slides">
+            <div class="slide active"><img src="static/img/foto2.png" alt="Foto 1"></div>
+            <div class="slide"><img src="static/img/Início.png" alt="Foto 2"></div>
+            <div class="slide"><img src="static/img/Início.png" alt="Foto 3"></div>
           </div>
-          <div class="card">
-            <div class="card-icon">🥇</div>
-            <div class="card-body">
-              <h3>Campeão Regional</h3>
-              <p>Ano: 2022 — Destaque em técnica e disciplina</p>
-            </div>
+          <div class="carousel-controls">
+            <button class="prev" aria-label="Anterior">‹</button>
+            <button class="next" aria-label="Próximo">›</button>
           </div>
-          <div class="card">
-            <div class="card-icon">🎖️</div>
-            <div class="card-body">
-              <h3>Medalha de Honra</h3>
-              <p>Reconhecimento por contribuição à comunidade</p>
-            </div>
-          </div>
+          <div class="dots" aria-hidden="false"></div>
         </div>
       </div>
     </section>
@@ -117,5 +106,56 @@
 
         window.addEventListener('scroll', onScroll, {passive:true});
         document.addEventListener('DOMContentLoaded', onScroll);
+      })();
+
+      // Simple carousel with autoplay
+      (function(){
+        const carousel = document.querySelector('.carousel');
+        if(!carousel) return;
+        const slides = Array.from(carousel.querySelectorAll('.slide'));
+        const prevBtn = carousel.querySelector('.prev');
+        const nextBtn = carousel.querySelector('.next');
+        const dotsWrap = carousel.querySelector('.dots');
+        let idx = slides.findIndex(s=>s.classList.contains('active'));
+        if(idx < 0) idx = 0;
+        const INTERVAL = 3500;
+        let timer = null;
+
+        function goTo(n){
+          slides.forEach((s,i)=> s.classList.toggle('active', i===n));
+          const dots = dotsWrap.querySelectorAll('.dot');
+          dots.forEach((d,i)=> d.classList.toggle('active', i===n));
+          idx = (n + slides.length) % slides.length;
+        }
+
+        function next(){ goTo(idx+1); }
+        function prev(){ goTo(idx-1); }
+
+        // build dots
+        slides.forEach((_,i)=>{
+          const d = document.createElement('button');
+          d.className = 'dot'+(i===idx? ' active':'');
+          d.setAttribute('aria-label', 'Ir para foto '+(i+1));
+          d.addEventListener('click', ()=>{ goTo(i); resetTimer(); });
+          dotsWrap.appendChild(d);
+        });
+
+        nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetTimer(); });
+        prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetTimer(); });
+
+        function startTimer(){ if(timer) clearInterval(timer); timer = setInterval(next, INTERVAL); }
+        function resetTimer(){ startTimer(); }
+        carousel.addEventListener('mouseenter', ()=>{ if(timer) clearInterval(timer); });
+        carousel.addEventListener('mouseleave', ()=>{ startTimer(); });
+
+        // make images responsive and accessible fallback
+        slides.forEach(s=>{
+          const img = s.querySelector('img');
+          if(img){ img.loading = 'lazy'; }
+        });
+
+        // init
+        goTo(idx);
+        startTimer();
       })();
     </script>
