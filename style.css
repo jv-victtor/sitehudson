@@ -48,7 +48,7 @@ body{padding-top:64px}
 @media (max-width:600px){
   .topbar{padding:12px 18px}
   .main-nav{display:none}
-  .hero{min-height:100vh;background-image:url('/static/img/Início.png');background-position:top;justify-content:center;padding-left:0}
+  .hero{min-height:100vh;background-image:url('mobile.png');background-position:top;justify-content:center;padding-left:0}
   .portrait{width:120px;height:120px}
   .hero-name{font-size:34px}
   .ribbon{padding:10px 16px}
