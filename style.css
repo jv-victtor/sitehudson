@@ -13,7 +13,7 @@ body{padding-top:64px}
 .main-nav .nav-item.active{color:#fff;border-bottom:3px solid #b90f0f;padding-bottom:6px}
 .phone{color:#e6e6e6}
 
-.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;justify-content:flex-start;padding-left:80px;background-image:url('/static/img/Início.png');background-size:cover;background-position:center}
+.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;justify-content:flex-start;padding-left:80px;background-image:url('/static/Início.png');background-size:cover;background-position:center}
 .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.45)}
 .hero-content{position:relative;z-index:2;text-align:left;max-width:720px;padding:40px 20px 40px 0}
 /*.portrait{width:160px;height:160px;border-radius:6px;background:linear-gradient(180deg,#666,#333);margin:0 auto 14px;background-image:url('/static/img/Início.png');background-size:cover;background-position:center;filter:brightness(0.85)}*/
