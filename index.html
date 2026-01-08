@@ -4,11 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hudson Matheus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ENjdO4Dr2bkBIFxQpeoYz1FQ775a2mZ6b6Z9E6Y5rYjz1zW1nQqV7KfQ2p6X9ct" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header class="topbar">
-      <div class="logo"> <a href="#home" class="logo-icon">H.M</a> </div>
+      <div class="logo">
+        <a href="#home" class="logo-icon">
+          <img src="static/img/logo.png" alt="Hudson Matheus" />
+        </a>
+      </div>
       <nav class="main-nav">
         <a class="nav-item active" href="#home">Início</a>
         <a class="nav-item" href="#conquistas">Conquistas</a>
@@ -38,17 +43,26 @@
     <section id="conquistas" class="section conquistas">
       <div class="section-inner">
         <h2 class="section-title">Conquistas</h2>
-        <div class="carousel" aria-roledescription="carousel">
-          <div class="slides">
-            <div class="slide active"><img src="static/img/foto2.png" alt="Foto 1"></div>
-            <div class="slide"><img src="static/img/Início.png" alt="Foto 2"></div>
-            <div class="slide"><img src="static/img/Início.png" alt="Foto 3"></div>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="static/img/foto2.png" class="d-block w-100" alt="Conquista 1">
+            </div>
+            <div class="carousel-item">
+              <img src="static/img/Início.png" class="d-block w-100" alt="Conquista 2">
+            </div>
+            <div class="carousel-item">
+              <img src="static/img/Início.png" class="d-block w-100" alt="Conquista 3">
+            </div>
           </div>
-          <div class="carousel-controls">
-            <button class="prev" aria-label="Anterior">‹</button>
-            <button class="next" aria-label="Próximo">›</button>
-          </div>
-          <div class="dots" aria-hidden="false"></div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+          </button>
         </div>
       </div>
     </section>
@@ -108,65 +122,8 @@
         document.addEventListener('DOMContentLoaded', onScroll);
       })();
 
-      // Simple carousel with autoplay
-      (function(){
-        const carousel = document.querySelector('.carousel');
-        if(!carousel) return;
-        const slides = Array.from(carousel.querySelectorAll('.slide'));
-        const prevBtn = carousel.querySelector('.prev');
-        const nextBtn = carousel.querySelector('.next');
-        const dotsWrap = carousel.querySelector('.dots');
-        let idx = slides.findIndex(s=>s.classList.contains('active'));
-        if(idx < 0) idx = 0;
-        const INTERVAL = 3500;
-        let timer = null;
-
-        function goTo(n){
-          slides.forEach((s,i)=> s.classList.toggle('active', i===n));
-          const dots = dotsWrap.querySelectorAll('.dot');
-          dots.forEach((d,i)=> d.classList.toggle('active', i===n));
-          idx = (n + slides.length) % slides.length;
-        }
-
-        function next(){ goTo(idx+1); }
-        function prev(){ goTo(idx-1); }
-
-        // build dots
-        slides.forEach((_,i)=>{
-          const d = document.createElement('button');
-          d.className = 'dot'+(i===idx? ' active':'');
-          d.setAttribute('aria-label', 'Ir para foto '+(i+1));
-          d.addEventListener('click', ()=>{ goTo(i); resetTimer(); });
-          dotsWrap.appendChild(d);
-        });
-
-        nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetTimer(); });
-        prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetTimer(); });
-
-        function startTimer(){ if(timer) clearInterval(timer); timer = setInterval(next, INTERVAL); }
-        function resetTimer(){ startTimer(); }
-        carousel.addEventListener('mouseenter', ()=>{ if(timer) clearInterval(timer); });
-        carousel.addEventListener('mouseleave', ()=>{ startTimer(); });
-
-        // basic touch/swipe support for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        carousel.addEventListener('touchstart', (e)=>{ touchStartX = e.touches[0].clientX; if(timer) clearInterval(timer); }, {passive:true});
-        carousel.addEventListener('touchmove', (e)=>{ touchEndX = e.touches[0].clientX; }, {passive:true});
-        carousel.addEventListener('touchend', ()=>{
-          const diff = touchStartX - touchEndX;
-          if(Math.abs(diff) > 40){ if(diff > 0) next(); else prev(); }
-          resetTimer();
-        });
-
-        // make images responsive and accessible fallback
-        slides.forEach(s=>{
-          const img = s.querySelector('img');
-          if(img){ img.loading = 'lazy'; }
-        });
-
-        // init
-        goTo(idx);
-        startTimer();
-      })();
+      // Carousel script removed
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoYz1FQ775a2mZ6b6Z9E6Y5rYjz1zW1nQqV7KfQ2p6X9ct" crossorigin="anonymous"></script>
+  </body>
+</html>

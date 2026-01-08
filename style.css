@@ -7,7 +7,8 @@ html{scroll-behavior:smooth}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 36px;background:rgba(0,0,0,0.75);border-bottom:1px solid #222;height:64px;position:fixed;top:0;left:0;right:0;z-index:40;}
 body{padding-top:64px}
 .logo{display:flex;align-items:center}
-.logo-icon{font-size:24px;margin-right:5px}
+.logo-icon{display:inline-block;margin-right:0px}
+.logo-icon img{height:120px;width:auto;display:block}
 .main-nav{display:flex;gap:18px}
 .main-nav .nav-item{color:#aaa}
 .main-nav .nav-item.active{color:#fff;border-bottom:3px solid #b90f0f;padding-bottom:6px}
@@ -31,7 +32,7 @@ body{padding-top:64px}
 
 /* Sections: same height as hero and distinct backgrounds */
 .section{min-height:calc(100vh - 72px);display:flex;align-items:center;color:#fff}
-.section .section-inner{max-width:1100px;margin:0 auto;padding:0 20px}
+.section .section-inner{max-width:1400px;margin:0 auto;padding:0 20px}
 .section-title{font-size:32px;margin-bottom:18px;color:#fff}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{background:rgba(255,255,255,0.03);padding:18px;border-radius:10px;display:flex;gap:12px;align-items:center}
@@ -69,23 +70,67 @@ body{padding-top:64px}
 .cta{min-width:140px}
 .cta svg{display:none}
 
-/* Carousel styles for conquistas */
-.carousel{position:relative;overflow:hidden;border-radius:10px;background:rgba(255,255,255,0.02);padding:12px}
-.carousel .slides{position:relative;height:420px}
-.carousel .slide{position:absolute;inset:12px;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.995);transition:opacity 0.6s ease, transform 0.6s ease}
-.carousel .slide.active{opacity:1;transform:scale(1);z-index:2}
-.carousel .slide img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block}
-.carousel-controls{position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%);pointer-events:none}
-.carousel-controls button{pointer-events:auto;background:rgba(0,0,0,0.45);color:#fff;border:0;padding:8px 12px;border-radius:6px;margin:0 10px;font-size:22px}
-.dots{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;display:flex;gap:8px}
-.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.35);border:0}
-.dot.active{background:#c72a2a}
+/* Bootstrap carousel overrides for the Conquistas section */
+#conquistas .carousel{width:100%;max-width:100%;margin:24px 0;border-radius:12px;overflow:hidden;background:rgba(0,0,0,0.03)}
+#conquistas .carousel{position:relative}
+#conquistas .carousel-inner{height:min(60vh,720px);max-height:840px}
+#conquistas .carousel-item{height:100%}
+#conquistas .carousel-item img{width:100%;height:100%;object-fit:cover;display:block}
+
+@media (max-width:900px){
+  #conquistas .carousel-inner{height:min(50vh,520px);max-height:520px}
+}
 
 @media (max-width:600px){
-  .carousel .slide img{height:260px}
-  .carousel .slides{height:260px}
-  .carousel{padding:8px}
-  .carousel-controls button{padding:10px 14px;font-size:28px}
-  .dots{bottom:10px}
+  #conquistas .carousel-inner{height:min(48vh,420px);max-height:420px}
+}
+
+/* Styled arrow-only controls for Conquistas carousel */
+#conquistas .carousel-control-prev,
+#conquistas .carousel-control-next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+  transition:background .12s, transform .12s;
+  border:0;padding:0;
+}
+#conquistas .carousel-control-prev:hover,
+#conquistas .carousel-control-next:hover{
+  background:rgba(0,0,0,0.35);
+  transform:translateY(-50%) scale(1.03);
+  border-radius:8px;
+}
+#conquistas .carousel-control-prev{left:12px}
+#conquistas .carousel-control-next{right:12px}
+
+/* Custom inline SVG arrows (white) as control icons; buttons are transparent so only icon shows */
+#conquistas .carousel-control-prev-icon{
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/></svg>");
+  width:22px;height:22px;background-repeat:no-repeat;background-position:center;background-size:22px 22px;
+}
+#conquistas .carousel-control-next-icon{
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z'/></svg>");
+  width:22px;height:22px;background-repeat:no-repeat;background-position:center;background-size:22px 22px;
+}
+
+@media (max-width:900px){
+  #conquistas .carousel-control-prev,
+  #conquistas .carousel-control-next{width:42px;height:42px}
+  #conquistas .carousel-control-prev{left:10px}
+  #conquistas .carousel-control-next{right:10px}
+}
+
+@media (max-width:600px){
+  #conquistas .carousel-control-prev,
+  #conquistas .carousel-control-next{width:40px;height:40px}
+  #conquistas .carousel-control-prev{left:8px}
+  #conquistas .carousel-control-next{right:8px}
 }
 
