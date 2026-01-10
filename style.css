@@ -28,11 +28,53 @@ body{padding-top:64px}
 
 .phone{color:#e6e6e6}
 
+.hero-name-img {
+  display: block;
+  max-width: 600px; /* Ajuste o tamanho conforme sua necessidade */
+  height: auto;
+  
+  /* Força o alinhamento à esquerda */
+  margin-left: 0 !important; 
+  margin-right: auto !important;
+
+  /* Se ela ainda estiver longe da borda, use este truque: */
+  position: relative;
+  left: -70px; /* Valores negativos empurram a imagem para fora da margem esquerda */
+  
+  /* Garante que ela não fique colada nos itens de baixo */
+  margin-bottom: 20px; 
+
+  display: block;
+  max-width: 600px;
+  width: 100%; /* Permite que ela diminua se a tela for menor que 600px */
+  height: auto;
+  margin-left: 0;
+  position: relative;
+  left: -70px; /* Ajuste que você já estava usando */
+  z-index: 3;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); /* Sombra leve no PNG */
+}
 
 
-.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;justify-content:flex-start;padding-left:80px;background-image:url('Início.png');background-size:cover;background-position:center}
+/* Garante que o container não neutralize o alinhamento */
+.hero-content {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
 
-.hero-overlay{position:absolute;inset:0;background:#0000003a}
+.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;justify-content:flex-start;padding-left:80px;background-image:url('static/img/Início.png');background-size:cover;background-position:center}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Cria uma sombra preta da esquerda para a direita */
+  background: linear-gradient(to right, 
+    rgba(0, 0, 0, 0.8) 0%,    /* Cor forte na esquerda */
+    rgba(0, 0, 0, 0.4) 50%,   /* Suaviza no meio */
+    transparent 100%          /* Fica totalmente invisível na direita */
+  );
+  z-index: 1; /* Garante que fique atrás do conteúdo, mas sobre a imagem de fundo */
+}
 
 .hero-content{position:relative;z-index:2;text-align:left;max-width:720px;padding:40px 20px 40px 0}
 
@@ -124,7 +166,21 @@ body{padding-top:64px}
 
   .main-nav{display:none}
 
-  .hero{min-height:100vh;background-image:url('mobile.png');background-position:top;justify-content:center;padding-left:0}
+.hero {
+    min-height: 100vh;
+    background-image: url('static/img/mobilefoto.png');
+    background-repeat: no-repeat;
+    background-color: #111; /* Cor de segurança igual ao seu body */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0;
+  }
+
+
+  }
+
 
   .portrait{width:120px;height:120px}
 
@@ -154,7 +210,30 @@ body{padding-top:64px}
 
   .mb-item.active{color:#fff}
 
-}
+  .hero-name-img {
+    max-width: 280px; /* Tamanho menor para celular */
+    
+    left: 0 !important; /* Remove o deslocamento de -70px do desktop */
+    margin-top: 200px;
+    
+    /* Cria o sombreamento na base da imagem */
+    filter: drop-shadow(0 15px 10px rgba(0,0,0,0.8)); 
+    
+    /* Efeito de flutuar levemente acima da sombra */
+    transform: translateY(-10px); 
+  }
+
+  /* Ajuste no container mobile para garantir centralização */
+  .hero-content {
+    text-align: center !important;
+    align-items: center !important;
+    padding: 20px !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
 
 
 
