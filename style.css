@@ -166,20 +166,20 @@ body{padding-top:64px}
 
   .main-nav{display:none}
 
-.hero {
-    min-height: 100vh;
-    background-image: url('static/img/mobilefoto.png');
-    background-repeat: no-repeat;
-    background-color: #111; /* Cor de segurança igual ao seu body */
+  .hero {
+      min-height: 100vh;
+      background-image: url('static/img/mobilefoto.png');
+      background-repeat: no-repeat;
+      background-color: #111; 
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 0;
-  }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 0;
+    }
 
 
-  }
+  
 
 
   .portrait{width:120px;height:120px}
@@ -223,6 +223,8 @@ body{padding-top:64px}
     transform: translateY(-10px); 
   }
 
+
+
   /* Ajuste no container mobile para garantir centralização */
   .hero-content {
     text-align: center !important;
@@ -232,7 +234,7 @@ body{padding-top:64px}
     flex-direction: column;
   }
 
-
+}
 
 
 
